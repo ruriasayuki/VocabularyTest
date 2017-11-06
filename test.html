@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+	<script type="text/javascript" src="jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+	var vocas = [];
+	var test = null;
+	function jsReadFiles(files) {
+        if (files.length) {
+            var file = files[0];
+            var reader = new FileReader();//new一个FileReader实例
+            if (/text+/.test(file.type)) {//判断文件类型，是不是text类型
+                reader.onload = function() {
+					test = this.result;
+					vocas = test.split("\n\r");
+                }
+                reader.readAsText(file);
+        }
+    }
+	}
+	function randomVoca(){
+		var len = vocas.length;
+		var x = Math.floor(len * Math.random());
+		$('#danci').html(vocas[x]);
+	}
+    </script>
+</head>
+<body>
+<input type="file" onchange="jsReadFiles(this.files)"/>
+
+<button onclick="randomVoca()">按钮</button>
+<br>
+<div id="danci"></div>
+</body>
+</html>
