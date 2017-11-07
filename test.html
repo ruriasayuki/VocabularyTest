@@ -44,6 +44,9 @@
 		var len = vocas.length;
 		var x = Math.floor(len * Math.random());
 		$('#danci').html(vocas[x].word);
+		$('#duyin').html(vocas[x].pron);
+		$('#jieshi').html(vocas[x].def);
+		
 	}
     </script>
 </head>
@@ -53,5 +56,9 @@
 <button onclick="randomVoca()">按钮</button>
 <br>
 <div id="danci"></div>
+<div id="duyin"></div>
+<div id="jieshi"></div>
+<div id="beizhu"></div>
+<div id="guanlian"></div>
 </body>
 </html>
