@@ -4,61 +4,27 @@
     <meta charset="UTF-8">
     <title>Home</title>
 	<script type="text/javascript" src="jquery-3.2.1.min.js"></script>
-    <script type="text/javascript">
-	var vocabulary = function(a){
-		var temparr = a.split("\n");
-		if(temparr.length==3){
-		return {
-			word: temparr[0].slice(3)||"",
-			pron: temparr[1].slice(3)||"",
-			def: temparr[2].slice(3)||"",
-			append: "",
-			wordslist: new Array()
-		};
-		}
-		else 
-		return null;
-	}
-	var vocas = new Array();
-	var test = null;
-	function jsReadFiles(files) {
-        if (files.length) {
-            var file = files[0];
-            var reader = new FileReader();//new一个FileReader实例
-            if (/text+/.test(file.type)) {//判断文件类型，是不是text类型
-                reader.onload = function() {
-					test = this.result;
-					temp = test.split("\r\n\r\n");
-					var len = temp.length;
-					for(var i=0;i<len;i++)
-					{
-						var word = new vocabulary(temp[i]);
-						if(word) vocas.push(word);
-					}
-                }
-                reader.readAsText(file);
-        }
-    }
-	}
-	function randomVoca(){
-		var len = vocas.length;
-		var x = Math.floor(len * Math.random());
-		$('#danci').html(vocas[x].word);
-		$('#duyin').html(vocas[x].pron);
-		$('#jieshi').html(vocas[x].def);
-		
-	}
-    </script>
+	<script type="text/javascript" src="word.js"></script>
 </head>
 <body>
-<input type="file" onchange="jsReadFiles(this.files)"/>
+选择bing词典导出txt作为导入文件<input type="file" onchange="jsReadFiles(this.files)"/>
+<br>
+
+
+<button onclick="saveVoca()">保存单词存档</button>
+打开单词存档
+<input type="file" id="file" name="files[]" onchange="openVoca(this.files)"/>  
+<br>
 
 <button onclick="randomVoca()">按钮</button>
+
+
 <br>
-<div id="danci"></div>
-<div id="duyin"></div>
-<div id="jieshi"></div>
-<div id="beizhu"></div>
-<div id="guanlian"></div>
+<div id="danci">a</div>
+<div id="duyin">a</div>
+<div id="jieshi">a</div>
+<input type="checkbox"/>
+<div id="beizhu">a</div>
+<div id="guanlian">a</div>
 </body>
 </html>
