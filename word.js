@@ -6,7 +6,7 @@ var vocabulary = function (a) {
             pron: temparr[1].slice(3) || "",
             def: temparr[2].slice(3) || "",
             check: false,
-            append: "",
+            append: "none",
             wordslist: new Array()
         };
     }
@@ -54,7 +54,7 @@ function randomVoca() {
     $('#danci').html(vocas[x].word);
     $('#duyin').html(vocas[x].pron);
     $('#jieshi').html(vocas[x].def);
-
+    $('#beizhu').val(vocas[x].append);
 }
 function doSave(value, type, name) {
     var blob;
@@ -87,4 +87,9 @@ function doSave(value, type, name) {
 
 function saveVoca() {
     doSave(JSON.stringify(vocas), "text/latex", "voca.txt");
+}
+
+function editVoca()
+{
+    vocas[index].append = $('#beizhu').val();
 }
